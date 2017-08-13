@@ -1,0 +1,30 @@
+body {
+    font-family: "Zilla Slab", "Arial", serif;
+    font-size: 20px;
+}
+
+h1, h2, h3, h4 {
+    display: table;
+    font-weight: 600;
+}
+
+article h2, article h3, article h4 {
+    display: table;
+    color: white;
+    background-color: black;
+    padding: 2px 8px 2px 8px;
+}
+
+#outline h1 {
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 15px;
+    margin: 0;
+}
+
+#outline h3 {
+    font-size: 16px;
+    margin: 20px 20px;
+    border-left: solid 2px magenta;
+    padding-left: 10px;
+}

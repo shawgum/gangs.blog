@@ -1,0 +1,157 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+
+}
+
+#container {
+    min-height: 100%;
+    padding: 10px;
+}
+
+/*code related*/
+code {
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 25px;
+    display: block;
+    white-space: pre;
+}
+
+.code-panel {
+    box-sizing: border-box;
+    background-color: rgba(158, 158, 158, 0.07);
+    padding-top: 5px;
+    position: relative;
+}
+
+.code-heading {
+    border-bottom: solid 2px dimgray;
+    padding: 5px 80px 5px 15px;
+    font-size: 18px;
+    margin: 0;
+    display: inline;
+    font-weight: 600;
+}
+
+.code {
+    position: relative;
+    padding: 20px 5px;
+}
+
+.code-numbering {
+    position: absolute;
+    border-right: solid 1px gray;
+}
+
+.code-content {
+    margin-left: 30px;
+    overflow: auto;
+}
+
+.copy {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.copy {
+
+}
+
+/*reference*/
+a.ref {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    padding: 0 5px;
+    color: lightslategray;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/*outline*/
+#outline_container {
+    width: 22%;
+}
+
+#outline {
+    background-color: pink;
+}
+
+#outline h3 {
+    margin-left: 10px;
+    border-left: solid 2px lightslategrey;
+}
+
+/*article*/
+#content_container {
+    text-align: center;
+    float: right;
+    width: 78%;
+}
+
+article {
+    text-align: left;
+    margin-left: 5%;
+    width: 65%;
+}
+
+/*footer*/
+#footer_container {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    clear: both;
+}
+
+#footer {
+    display: block;
+    padding: 10px 0 10px 0;
+    border-top: solid 1px lightgrey;
+    max-width: 921px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contact {
+    height: auto;
+    display: block;
+}
+
+#contact a {
+    display: block;
+    padding: 7px 0 7px 0;
+}
+
+@media only screen and (max-width: 767px) and (min-width: 520px) {
+    #contact {
+        display: block;
+    }
+
+    #contact a {
+        display: inline;
+        margin: 0 10px 0 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #contact {
+        height: 15px;
+        display: inline-block;
+    }
+
+    #contact a {
+        display: inline;
+        margin: 0 10px 0 10px;
+    }
+}
