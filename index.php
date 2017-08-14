@@ -8,10 +8,11 @@ include("resources/texts/research_on_influxdb.php");
 <head>
     <title>Gavin's Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="https://fonts.googleapis.com/css?family=Zilla+Slab:400,600" rel="stylesheet">
+    <!--    <link href="https://fonts.googleapis.com/css?family=Zilla+Slab:400,600" rel="stylesheet">-->
     <link rel="stylesheet" href="resources/stylesheets/typography.css" type="text/css"/>
     <link rel="stylesheet" href="resources/stylesheets/layout.css" type="text/css"/>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <!--    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>-->
     <script src="resources/scripts/global.js"></script>
 </head>
 <body>
@@ -31,10 +32,9 @@ include("resources/texts/research_on_influxdb.php");
                     <li>Open a PowerShell console as Administrator.</li>
                     <li>Run the following command:
                         <div class="code-panel line-numbers">
-                            <div class="code">
+                            <div class="code-main">
                                 <code class="code-content">Enable-WindowsOptionalFeature -Online
-                                    -FeatureName:Microsoft-Hyper-V -All
-                                </code>
+                                    -FeatureName:Microsoft-Hyper-V -All</code>
                             </div>
                         </div>
                     </li>
@@ -68,7 +68,7 @@ include("resources/texts/research_on_influxdb.php");
                 <p><?php echo $install_content ?></p>
                 <div class="code-panel line-numbers">
                     <p class="code-heading"><?php echo $install_code_title ?></p>
-                    <div class="code">
+                    <div class="code-main">
                         <code class="code-content"><?php echo $install_code ?></code>
                     </div>
 

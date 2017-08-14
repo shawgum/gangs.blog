@@ -20,8 +20,8 @@ $(document).ready(function () {
 });
 
 function prepareLineNumbers() {
-    $(".line-numbers .code").each(function (i, val) {
-        $(val).prepend(generateLineNumbers($(val).find("code")));
+    $(".line-numbers .code-main").each(function (i, val) {
+        $(val).prepend(generateLineNumbers($(val).find(".code-content")));
     });
 }
 
@@ -41,10 +41,10 @@ function generateLineNumbers(src) {
     while (match !== null) {
         number++;
         match = reg.exec(str);
-        console.log(number);
     }
-    if (str.charAt(length) !== "") {
-        if (str.charAt(str.length) !== '\n' || str.charAt(str.length) !== '\r') {
+    if (str.charAt(length - 1) !== "") {
+        if (str.charAt(length - 1) !== '\n' && str.charAt(length - 1) !== '\r') {
+            console.log(str.charAt(length - 1).charCodeAt(0));
             number++;
         }
     }
@@ -101,13 +101,28 @@ function prepareBookmark() {
     });
 }
 
-function prepareOutline() {
-    var ul = $("<ul/>");
-    ul.appendTo($("#outline"));
+function prepareOutline(parent) {
+    var pa = $("article h" + parent);
+    var bool = true;
+    if (pa.length > 0) {
+        pa.each(function (parentI, parentVal) {
+            var ul = $("<ul/>");
+            ul.appendTo($("#outline"));
+            var ch = $("article h" + child);
+            if (ch.length > 0) {
+                ch.each(function (childI, childVal) {
+                    $("<li><a href=#" + childVal.id + ">" + childVal.innerHTML + "</a></li>").appendTo(ul);
+                });
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
 
-    $("article h2").each(function (i, val) {
-        $("<li><a href=#" + val.id + ">" + val.innerHTML + "</a></li>").appendTo(ul);
-    });
+
+
+
 }
 
 function prepareRef() {
