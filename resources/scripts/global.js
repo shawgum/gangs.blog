@@ -14,11 +14,15 @@ $(document).ready(function () {
 
     prepareLineNumbers();
     prepareCopyBtn();
+    prepareBookmark();
     prepareOutline();
+    prepareRef();
 });
 
 function prepareLineNumbers() {
-    $(".line-numbers .code").prepend(generateLineNumbers(this.$("code")));
+    $(".line-numbers .code").each(function (i, val) {
+        $(val).prepend(generateLineNumbers($(val).find("code")));
+    });
 }
 
 function generateLineNumbers(src) {
@@ -78,9 +82,9 @@ function prepareCopyBtn() {
             if (successful) {
                 var copy = this;
                 this.innerHTML = "COPIED";
+                window.getSelection().empty();
                 setTimeout(function () {
                     copy.innerHTML = "COPY";
-                    window.getSelection().empty();
                 }, 1000);
             } else {
                 this.innerHTML = "Failed. Please press Ctrl+C to copy.";
@@ -91,8 +95,21 @@ function prepareCopyBtn() {
     });
 }
 
+function prepareBookmark() {
+    $("article h2").each(function (i, val) {
+        val.id = val.innerHTML;
+    });
+}
+
 function prepareOutline() {
-    var outline = $("#outline");
-    $("article h1").clone().appendTo(outline);
-    $("section h3").clone().appendTo(outline);
+    var ul = $("<ul/>");
+    ul.appendTo($("#outline"));
+
+    $("article h2").each(function (i, val) {
+        $("<li><a href=#" + val.id + ">" + val.innerHTML + "</a></li>").appendTo(ul);
+    });
+}
+
+function prepareRef() {
+    $("a.ref").wrap("<div class='ref'/>");
 }

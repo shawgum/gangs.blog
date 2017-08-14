@@ -5,12 +5,18 @@ html {
 body {
     min-height: 100%;
     margin: 0;
-
+    position: relative;
 }
 
 #container {
     min-height: 100%;
     padding: 10px;
+}
+
+#related_link_container {
+    padding-bottom: 50px;
+    clear-after: both;
+    clear: both;
 }
 
 /*code related*/
@@ -39,7 +45,6 @@ code {
 }
 
 .code {
-    position: relative;
     padding: 20px 5px;
 }
 
@@ -55,40 +60,49 @@ code {
 
 .copy {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 5px;
     cursor: pointer;
-}
-
-.copy {
-
 }
 
 /*reference*/
 a.ref {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: inline-block;
     padding: 0 5px;
     color: lightslategray;
     font-size: 14px;
     font-weight: 600;
 }
 
+div.ref {
+    text-align: right;
+}
+
 /*outline*/
 #outline_container {
     width: 22%;
+    position: fixed;
+    left: 2%;
+    top: 40px;
 }
 
 #outline {
     background-color: pink;
 }
 
-#outline h3 {
+#outline h2 {
     margin-left: 10px;
     border-left: solid 2px lightslategrey;
 }
+
+#outline ul {
+    margin: 0;
+    padding: 10px 40px;
+}
+
+li {
+    margin: 10px;
+}
+
 
 /*article*/
 #content_container {
@@ -140,18 +154,21 @@ article {
 
     #contact a {
         display: inline;
-        margin: 0 10px 0 10px;
+        margin: 0 10px;
+        padding: 0;
     }
 }
 
 @media only screen and (min-width: 768px) {
     #contact {
-        height: 15px;
         display: inline-block;
+        white-space: nowrap;
+        vertical-align: top;
     }
 
     #contact a {
         display: inline;
         margin: 0 10px 0 10px;
+        padding: 0;
     }
 }

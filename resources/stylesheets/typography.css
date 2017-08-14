@@ -28,3 +28,12 @@ article h2, article h3, article h4 {
     border-left: solid 2px magenta;
     padding-left: 10px;
 }
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:visited {
+    color: inherit;
+}
