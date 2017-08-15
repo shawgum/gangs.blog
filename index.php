@@ -22,6 +22,18 @@ include("resources/texts/research_on_influxdb.php");
         <article>
             <h1>Research on InfluxDB</h1>
             <section>
+                <h2>Ajax Test for InfluxDB</h2>
+                <p>The random item will be in mydb.</p>
+                <code>INSERT api_test,author=shao,method=ajax value=RANDOM</code>
+                <button onclick="addToInflux('RANDOM')">Add random item</button>
+                <div id="ajaxSent">
+                    <h3>AjaxSent</h3>
+                </div>
+                <div id="ajaxRec">
+                    <h3>AjaxRec</h3>
+                </div>
+            </section>
+            <section>
                 <h2>Environment</h2>
                 <p>Hyper-V is a feature since Windows 8 Professional/Educational/Enterprise for hosting virtual
                     machines, although possibly could be installed on Windows 7 (see <a

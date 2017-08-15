@@ -19,6 +19,66 @@ $(document).ready(function () {
     prepareRef();
 });
 
+function addToInflux(str) {
+    var ran = Math.random();
+    switch (str) {
+        case "RANDOM":
+            $.ajax({
+                url: "influx.php",
+                data: {
+                    type: "INSERT",
+                    value: ran
+                },
+                type: "POST",
+
+                dataType: "json"
+            })
+                .done(function (json) {
+                    console.log("Ajax Sent.");
+                    console.log("Reply: " + json.html);
+                    $("<p>").html(json.html).appendTo("#ajaxSent");
+                })
+                .fail(function (xhr, status, errorThrown) {
+                    console.log("Sorry, there was a problem!");
+                    console.log("Error: " + errorThrown);
+                    console.log("Status: " + status);
+                    console.dir(xhr);
+                })
+                .always(function (xhr, status) {
+                    // console.log("Request is complete!");
+                });
+            break;
+    }
+}
+
+function readFromInflux(str) {
+
+    $.ajax({
+        url: "influx.php",
+
+        data: {
+            type: "SELECT"
+        },
+
+        type: "POST",
+        dataType: "json"
+    })
+        .done(function (json) {
+            console.log("Ajax Sent.");
+            console.log("Reply: " + json.html);
+            $("<p>").html(json.html).appendTo("#ajaxRec");
+        })
+        .fail(function (xhr, status, errorThrown) {
+            console.log("Sorry, there was a problem!");
+            console.log("Error: " + errorThrown);
+            console.log("Status: " + status);
+            console.dir(xhr);
+        })
+        .always(function (xhr, status) {
+            // console.log("Request is complete!");
+        });
+}
+
 function prepareLineNumbers() {
     $(".line-numbers .code-main").each(function (i, val) {
         $(val).prepend(generateLineNumbers($(val).find(".code-content")));
@@ -119,9 +179,6 @@ function prepareOutline(parent) {
             }
         });
     }
-
-
-
 
 }
 
