@@ -29,6 +29,7 @@ include("resources/texts/research_on_influxdb.php");
                 <div id="ajaxSent">
                     <h3>AjaxSent</h3>
                 </div>
+                <button onclick="readFromInflux()">Select all</button>
                 <div id="ajaxRec">
                     <h3>AjaxRec</h3>
                 </div>

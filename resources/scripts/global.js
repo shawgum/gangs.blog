@@ -29,14 +29,13 @@ function addToInflux(str) {
                     type: "INSERT",
                     value: ran
                 },
-                type: "POST",
+                type: "POST"
 
-                dataType: "json"
             })
                 .done(function (json) {
                     console.log("Ajax Sent.");
-                    console.log("Reply: " + json.html);
-                    $("<p>").html(json.html).appendTo("#ajaxSent");
+                    console.log("Reply: " + json);
+                    $("<p>").html(json).appendTo("#ajaxSent");
                 })
                 .fail(function (xhr, status, errorThrown) {
                     console.log("Sorry, there was a problem!");
