@@ -14,8 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         curl_exec($ch);
         curl_close($ch);
         echo $value;
+    } elseif ($type === "SELECT") {
+        $ch = curl_init("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\"");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $resp = curl_exec($ch);
+        echo $resp;
+        curl_close($ch);
     } else {
-        $ch = curl_init("http://localhost:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_text\"");
+        $ch = curl_init("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\"");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $resp = curl_exec($ch);
         echo $resp;

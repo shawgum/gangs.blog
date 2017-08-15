@@ -51,7 +51,6 @@ function addToInflux(str) {
 }
 
 function readFromInflux(str) {
-
     $.ajax({
         url: "influx.php",
 
