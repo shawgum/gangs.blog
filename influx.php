@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST["type"];
     if ($type === "INSERT") {
         $value = $_POST["value"];
-        $ch = curl_init("http://localhost:8086/write?db=mydb");
+        $ch = curl_init("http://gavins.me:8086/write?db=mydb");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "api_test,author=shao,method=ajax value=" . $value);
         curl_exec($ch);
