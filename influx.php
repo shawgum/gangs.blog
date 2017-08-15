@@ -1,9 +1,4 @@
 <?php
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//    $type = $_POST["type"];
-//    echo $type;
-//    echo "nonoon";
-//}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST["type"];
     if ($type === "INSERT") {
@@ -21,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo $resp;
         curl_close($ch);
     } else {
-        $ch = curl_init("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\"");
+        $ch = curl_init(htmlspecialchars("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\""));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $resp = curl_exec($ch);
         echo $resp;
