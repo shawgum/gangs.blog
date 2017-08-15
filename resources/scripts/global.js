@@ -104,7 +104,6 @@ function generateLineNumbers(src) {
     }
     if (str.charAt(length - 1) !== "") {
         if (str.charAt(length - 1) !== '\n' && str.charAt(length - 1) !== '\r') {
-            console.log(str.charAt(length - 1).charCodeAt(0));
             number++;
         }
     }
