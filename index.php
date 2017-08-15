@@ -2,8 +2,6 @@
 include("resources/texts/index.php");
 include("resources/texts/footer.php");
 include("resources/texts/research_on_influxdb.php");
-$sth = htmlspecialchars("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\"", ENT_QUOTES);
-echo $sth;
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,12 +30,16 @@ echo $sth;
                     <h3>AjaxSent</h3>
                 </div>
                 <button onclick="readFromInflux()">Select all</button>
-                <div id="ajaxRec">
-                    <h3>AjaxRec</h3>
-                </div>
+                <h4>AjaxRec</h4>
+                <table id="ajaxRec">
+                    <tr>
+                        <th>time</th>
+                        <th>author</th>
+                        <th>method</th>
+                        <th>value</th>
+                    </tr>
+                </table>
             </section>
-            <?php $sth = htmlspecialchars("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM <script>\"api_test\"</script>");
-            echo $sth; ?>
             <section>
                 <h2>Environment</h2>
                 <p>Hyper-V is a feature since Windows 8 Professional/Educational/Enterprise for hosting virtual

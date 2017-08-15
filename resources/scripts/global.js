@@ -50,21 +50,35 @@ function addToInflux(str) {
     }
 }
 
-function readFromInflux(str) {
+function readFromInflux() {
+    // $.getJSON("http://gavins.me:8086/query", {
+    //     db: "mydb",
+    //     q: "SELECT * FROM \"api_test\""
+    // }, function (resp) {
+    //     console.log(resp);
+    // });
+
     $.ajax({
-        url: "influx.php",
+        url: "http://gavins.me:8086/query",
 
         data: {
-            type: "SELECT"
+            db: "mydb",
+            q: "SELECT * FROM \"api_test\""
         },
 
-        type: "POST",
-        dataType: "json"
+        type: "GET"
+        // , dataType: "json"
     })
         .done(function (json) {
             console.log("Ajax Sent.");
-            console.log("Reply: " + json.html);
-            $("<p>").html(json.html).appendTo("#ajaxRec");
+            console.log(json["results"][0]["series"][0]["values"][0][0]);
+            var values = json["results"][0]["series"][0]["values"];
+            var valuesL = values.length;
+            var items, itemL;
+            for (var value in values) {
+                
+            }
+
         })
         .fail(function (xhr, status, errorThrown) {
             console.log("Sorry, there was a problem!");
@@ -76,6 +90,33 @@ function readFromInflux(str) {
             // console.log("Request is complete!");
         });
 }
+
+// function readFromInflux(str) {
+//     $.ajax({
+//         url: "influx.php",
+//
+//         data: {
+//             type: "SELECT"
+//         },
+//
+//         type: "POST",
+//         dataType: "json"
+//     })
+//         .done(function (json) {
+//             console.log("Ajax Sent.");
+//             console.log("Reply: " + json.html);
+//             $("<p>").html(json.html).appendTo("#ajaxRec");
+//         })
+//         .fail(function (xhr, status, errorThrown) {
+//             console.log("Sorry, there was a problem!");
+//             console.log("Error: " + errorThrown);
+//             console.log("Status: " + status);
+//             console.dir(xhr);
+//         })
+//         .always(function (xhr, status) {
+//             // console.log("Request is complete!");
+//         });
+// }
 
 function prepareLineNumbers() {
     $(".line-numbers .code-main").each(function (i, val) {

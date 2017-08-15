@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo $resp;
         curl_close($ch);
     } else {
-        $ch = curl_init(htmlspecialchars("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\""));
+        $ch = curl_init(htmlspecialchars("http://gavins.me:8086/query?db=mydb&q=SELECT%20*%20FROM%20%22api_test%22"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $resp = curl_exec($ch);
         echo $resp;
