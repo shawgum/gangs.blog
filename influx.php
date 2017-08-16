@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $value = $_POST["value"];
 
             $ch = curl_init();
-            $url = "http://localhost:8086/write?db=";
+            $url = "http://gavins.me:8086/write?db=";
             $db = $_POST["db"];
             $q = "api_test,author=shao,method=ajax value=" . $value;
             $url_final = $url . $db;
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // reinitialize curl resource
             $ch = curl_init();
 // set url
-            $url = "http://localhost:8086/query?";
+            $url = "http://gavins.me:8086/query?";
             //directly urlencode("db=mydb") will encode "=", which makes the query invalid.
             $query = "db=" . urlencode($db) . '&' . "q=" . urlencode($q);
             $url_final = $url . $query;
