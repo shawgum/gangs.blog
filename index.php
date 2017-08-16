@@ -2,6 +2,7 @@
 include("resources/texts/index.php");
 include("resources/texts/footer.php");
 include("resources/texts/research_on_influxdb.php");
+phpinfo();
 ?>
 <!DOCTYPE html>
 <html>
