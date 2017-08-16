@@ -11,12 +11,14 @@ $(document).ready(function () {
         }
     });
 
-
+    prepareCodeMain();
     prepareLineNumbers();
     prepareCopyBtn();
     prepareBookmark();
     prepareOutline();
     prepareRef();
+
+
 });
 
 function addToInflux(str) {
@@ -34,9 +36,11 @@ function addToInflux(str) {
 
             })
                 .done(function (json) {
-                    console.log("Ajax Sent.");
-                    console.log("Reply: " + json);
-                    $("<p>").html(json).appendTo("#ajaxSent");
+                    var tr = $("<tr>");
+                    tr.insertAfter("#ajaxSent .header");
+                    console.log(json + " sent.");
+
+                    $("<td>").html(json).appendTo(tr);
                 })
                 .fail(function (xhr, status, errorThrown) {
                     console.log("Sorry, there was a problem!");
@@ -52,12 +56,22 @@ function addToInflux(str) {
 }
 
 function readFromInflux() {
+    var resp = $("#ajaxResp");
+    var maxTime = resp.find(":nth-child(2)").find("td:first-of-type").html();
+    if (typeof maxTime === "undefined") {
+        maxTime = "";
+    } else {
+        console.log(maxTime);
+    }
+    console.log(maxTime);
+    var q = "SELECT * FROM \"api_test\"" + (maxTime.length > 1 ? (" WHERE time>" + "'" + maxTime + "'") : "");
+    console.log(q);
     $.ajax({
         url: "influx.php",
         data: {
             type: "SELECT",
             db: "mydb",
-            q: "SELECT * FROM \"api_test\""
+            q: q
         },
 
         type: "POST",
@@ -69,7 +83,7 @@ function readFromInflux() {
             var tr;
             var rowNo = values.length;
             for (var i = 0; i < rowNo; i++) {
-                tr = $("<tr>").appendTo("#ajaxRec");
+                tr = $("<tr>").insertAfter("#ajaxResp .header");
                 var row = values[i];
                 var colNo = row.length;
                 for (var j = 0; j < colNo; j++) {
@@ -87,6 +101,11 @@ function readFromInflux() {
             // console.log("Request is complete!");
         });
 }
+
+function prepareCodeMain() {
+    $(".code-content").wrap("<div class=\"code-main\">");
+}
+
 
 function prepareLineNumbers() {
     $(".line-numbers .code-main").each(function (i, val) {

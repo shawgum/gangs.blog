@@ -24,21 +24,33 @@ include("resources/texts/research_on_influxdb.php");
             <section>
                 <h2>Ajax Test for InfluxDB</h2>
                 <p>The random item will be in mydb.</p>
-                <code>INSERT api_test,author=shao,method=ajax value=RANDOM</code>
-                <button onclick="addToInflux('RANDOM')">Add random item</button>
-                <div id="ajaxSent">
-                    <h3>AjaxSent</h3>
+                <div class="code-panel">
+                    <code class="code-content">INSERT api_test,author=shao,method=ajax value=&lt;RANDOM&gt;</code>
                 </div>
-                <button onclick="readFromInflux()">Select all</button>
-                <h4>AjaxRec</h4>
-                <table id="ajaxRec">
-                    <tr>
+
+                <div id="ajaxSent_container">
+                    <button onclick="addToInflux('RANDOM')">Add random item</button>
+                    <table id="ajaxSent">
+                        <caption></caption>
+                        <tr class="header">
+                            <th>value</th>
+                        </tr>
+                    </table>
+                </div>
+                <div id="ajaxResp_container">
+                    <button onclick="readFromInflux()">Select all</button>
+                    <table id="ajaxResp">
+                        <caption></caption>
+                        <tbody>
+                        <tr class="header">
                         <th>time</th>
                         <th>author</th>
                         <th>method</th>
                         <th>value</th>
                     </tr>
+                        </tbody>
                 </table>
+                </div>
             </section>
             <section>
                 <h2>Environment</h2>
@@ -51,10 +63,8 @@ include("resources/texts/research_on_influxdb.php");
                     <li>Open a PowerShell console as Administrator.</li>
                     <li>Run the following command:
                         <div class="code-panel line-numbers">
-                            <div class="code-main">
                                 <code class="code-content">Enable-WindowsOptionalFeature -Online
                                     -FeatureName:Microsoft-Hyper-V -All</code>
-                            </div>
                         </div>
                     </li>
 
@@ -62,24 +72,6 @@ include("resources/texts/research_on_influxdb.php");
                 <a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v"
                    class="ref">Microsoft Hyper-V</a>
                 <pre class="para"><?php echo $environment ?></pre>
-                <p>First, a short primer on the datastore. Data in InfluxDB is organized by “time series”, which contain
-                    a measured value, like “cpu_load” or “temperature”. Time series have zero to many points, one for
-                    each discrete sample of the metric. Points consist of time (a timestamp), a measurement (“cpu_load”,
-                    for example), at least one key-value field (the measured value itself, e.g. “value=0.64”, or
-                    “temperature=21.2”), and zero to many key-value tags containing any metadata about the value (e.g.
-                    “host=server01”, “region=EMEA”, “dc=Frankfurt”).</p>
-                <p>First, a short primer on the datastore. Data in InfluxDB is organized by “time series”, which contain
-                    a measured value, like “cpu_load” or “temperature”. Time series have zero to many points, one for
-                    each discrete sample of the metric. Points consist of time (a timestamp), a measurement (“cpu_load”,
-                    for example), at least one key-value field (the measured value itself, e.g. “value=0.64”, or
-                    “temperature=21.2”), and zero to many key-value tags containing any metadata about the value (e.g.
-                    “host=server01”, “region=EMEA”, “dc=Frankfurt”).</p>
-                <p>First, a short primer on the datastore. Data in InfluxDB is organized by “time series”, which contain
-                    a measured value, like “cpu_load” or “temperature”. Time series have zero to many points, one for
-                    each discrete sample of the metric. Points consist of time (a timestamp), a measurement (“cpu_load”,
-                    for example), at least one key-value field (the measured value itself, e.g. “value=0.64”, or
-                    “temperature=21.2”), and zero to many key-value tags containing any metadata about the value (e.g.
-                    “host=server01”, “region=EMEA”, “dc=Frankfurt”).</p>
                 <a class="ref" href="https://portal.influxdata.com/downloads">REF</a>
             </section>
             <section>
@@ -87,10 +79,7 @@ include("resources/texts/research_on_influxdb.php");
                 <p><?php echo $install_content ?></p>
                 <div class="code-panel line-numbers">
                     <p class="code-heading"><?php echo $install_code_title ?></p>
-                    <div class="code-main">
                         <code class="code-content"><?php echo $install_code ?></code>
-                    </div>
-
                     <a class="ref" href="https://portal.influxdata.com/downloads">REF</a>
                 </div>
 

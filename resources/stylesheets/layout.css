@@ -117,6 +117,49 @@ article {
     width: 65%;
 }
 
+/*ajax*/
+#ajaxSent_container, #ajaxResp_container {
+    text-align: center;
+}
+
+/*table*/
+table {
+    border-collapse: collapse;
+    font-size: 15px;
+    font-family: monospace;
+    overflow: auto;
+    white-space: nowrap;
+    table-layout: auto;
+    min-width: 100%;
+}
+
+tr:nth-child(odd) {
+    border-bottom: dashed 1px lightgrey;
+}
+
+tr:nth-child(even) {
+    border-bottom: dashed 1px lightblue;
+}
+
+th {
+    border-bottom: dashed 3px dimgray;
+}
+
+th, td {
+    padding: 5px 30px;
+}
+
+button {
+    background-color: lightyellow;
+    border: dashed 2px lightblue;
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: 600;
+    padding: 5px 40px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
 /*footer*/
 #footer_container {
     display: block;
