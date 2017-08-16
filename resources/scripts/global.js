@@ -27,7 +27,8 @@ function addToInflux(str) {
                 url: "influx.php",
                 data: {
                     type: "INSERT",
-                    value: ran
+                    value: ran,
+                    db: "mydb"
                 },
                 type: "POST"
 
@@ -51,34 +52,30 @@ function addToInflux(str) {
 }
 
 function readFromInflux() {
-    // $.getJSON("http://gavins.me:8086/query", {
-    //     db: "mydb",
-    //     q: "SELECT * FROM \"api_test\""
-    // }, function (resp) {
-    //     console.log(resp);
-    // });
-
     $.ajax({
-        url: "http://gavins.me:8086/query",
-
+        url: "influx.php",
         data: {
+            type: "SELECT",
             db: "mydb",
             q: "SELECT * FROM \"api_test\""
         },
 
-        type: "GET"
-        // , dataType: "json"
+        type: "POST",
+        dataType: "json"
     })
         .done(function (json) {
             console.log("Ajax Sent.");
-            console.log(json["results"][0]["series"][0]["values"][0][0]);
             var values = json["results"][0]["series"][0]["values"];
-            var valuesL = values.length;
-            var items, itemL;
-            for (var value in values) {
-                
+            var tr;
+            var rowNo = values.length;
+            for (var i = 0; i < rowNo; i++) {
+                tr = $("<tr>").appendTo("#ajaxRec");
+                var row = values[i];
+                var colNo = row.length;
+                for (var j = 0; j < colNo; j++) {
+                    $("<td>").html(row[j].toString()).appendTo(tr);
+                }
             }
-
         })
         .fail(function (xhr, status, errorThrown) {
             console.log("Sorry, there was a problem!");
@@ -90,33 +87,6 @@ function readFromInflux() {
             // console.log("Request is complete!");
         });
 }
-
-// function readFromInflux(str) {
-//     $.ajax({
-//         url: "influx.php",
-//
-//         data: {
-//             type: "SELECT"
-//         },
-//
-//         type: "POST",
-//         dataType: "json"
-//     })
-//         .done(function (json) {
-//             console.log("Ajax Sent.");
-//             console.log("Reply: " + json.html);
-//             $("<p>").html(json.html).appendTo("#ajaxRec");
-//         })
-//         .fail(function (xhr, status, errorThrown) {
-//             console.log("Sorry, there was a problem!");
-//             console.log("Error: " + errorThrown);
-//             console.log("Status: " + status);
-//             console.dir(xhr);
-//         })
-//         .always(function (xhr, status) {
-//             // console.log("Request is complete!");
-//         });
-// }
 
 function prepareLineNumbers() {
     $(".line-numbers .code-main").each(function (i, val) {

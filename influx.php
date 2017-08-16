@@ -1,28 +1,49 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST["type"];
-    if ($type === "INSERT") {
-        $value = $_POST["value"];
-        $ch = curl_init("http://gavins.me:8086/write?db=mydb");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "api_test,author=shao,method=ajax value=" . $value);
-        curl_exec($ch);
-        curl_close($ch);
-        echo $value;
-    } elseif ($type === "SELECT") {
-        $ch = curl_init("http://gavins.me:8086/query?pretty=true&db=mydb&q=SELECT * FROM \"api_test\"");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $resp = curl_exec($ch);
-        echo $resp;
-        curl_close($ch);
-    } else {
-        $ch = curl_init(htmlspecialchars("http://gavins.me:8086/query?db=mydb&q=SELECT%20*%20FROM%20%22api_test%22"));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $resp = curl_exec($ch);
-        echo $resp;
-        curl_close($ch);
+    switch ($type) {
+        case "INSERT":
+            $value = $_POST["value"];
+
+            $ch = curl_init();
+            $url = "http://localhost:8086/write?db=";
+            $db = $_POST["db"];
+            $q = "api_test,author=shao,method=ajax value=" . $value;
+            $url_final = $url . $db;
+            curl_setopt($ch, CURLOPT_URL, $url_final);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $q);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $output = curl_exec($ch);
+            echo $output;
+            curl_close($ch);
+
+            break;
+
+        case "SELECT":
+            $db = $_POST["db"];
+            $q = $_POST["q"];
+
+// reinitialize curl resource
+            $ch = curl_init();
+// set url
+            $url = "http://localhost:8086/query?";
+            //directly urlencode("db=mydb") will encode "=", which makes the query invalid.
+            $query = "db=" . urlencode($db) . '&' . "q=" . urlencode($q);
+            $url_final = $url . $query;
+            curl_setopt($ch, CURLOPT_URL, $url_final);
+//return result as a string
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            $output = curl_exec($ch);
+            echo $output;
+
+// close curl resource to free up system resources
+            curl_close($ch);
+
+            break;
+
     }
 }
-//curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=mydb" --data-urlencode "q=SELECT \"value\" FROM \"cpu_load_short\" WHERE \"region\"='us-west'"
 
-//curl -i -XPOST 'http://localhost:8086/write?db=mydb' --data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
+//curl -i -XPOST 'db=mydb' --data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
