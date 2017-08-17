@@ -15,14 +15,14 @@ $(document).ready(function () {
     prepareLineNumbers();
     prepareCopyBtn();
     prepareBookmark();
-    prepareOutline();
+    prepareOutline($("article h1"), $("#outline_ul"), 2);
     prepareRef();
 
 
 });
 
 function addToInflux(str) {
-    var ran = Math.random();
+    var ran = getRandomInt(0, 100);
     switch (str) {
         case "RANDOM":
             $.ajax({
@@ -60,12 +60,8 @@ function readFromInflux() {
     var maxTime = resp.find(":nth-child(2)").find("td:first-of-type").html();
     if (typeof maxTime === "undefined") {
         maxTime = "";
-    } else {
-        console.log(maxTime);
     }
-    console.log(maxTime);
     var q = "SELECT * FROM \"api_test\"" + (maxTime.length > 1 ? (" WHERE time>" + "'" + maxTime + "'") : "");
-    console.log(q);
     $.ajax({
         url: "influx.php",
         data: {
@@ -92,7 +88,7 @@ function readFromInflux() {
             }
         })
         .fail(function (xhr, status, errorThrown) {
-            console.log("Sorry, there was a problem!");
+            console.log("Problem occurred when selecting data.");
             console.log("Error: " + errorThrown);
             console.log("Status: " + status);
             console.dir(xhr);
@@ -100,6 +96,16 @@ function readFromInflux() {
         .always(function (xhr, status) {
             // console.log("Request is complete!");
         });
+}
+
+function clearTable(name) {
+    $(name).find("tr[class!=header]").remove();
+}
+
+function deleteSchema(name) {
+    clearTable(name);
+    var q = "";
+    createAjax("influx.php", "DROP", "mydb", "");
 }
 
 function prepareCodeMain() {
@@ -188,25 +194,35 @@ function prepareBookmark() {
     });
 }
 
-function prepareOutline(parent) {
-    var pa = $("article h" + parent);
-    var bool = true;
-    if (pa.length > 0) {
-        pa.each(function (parentI, parentVal) {
-            var ul = $("<ul/>");
-            ul.appendTo($("#outline"));
-            var ch = $("article h" + child);
-            if (ch.length > 0) {
-                ch.each(function (childI, childVal) {
-                    $("<li><a href=#" + childVal.id + ">" + childVal.innerHTML + "</a></li>").appendTo(ul);
-                });
-                return true;
-            } else {
-                return false;
-            }
-        });
+function prepareOutline(parent, parentContainer, currentNo) {
+    if (currentNo > 6) {
+        return true;
     }
 
+    var currents = parent.nextUntil("h" + currentNo - 1, "h" + currentNo);
+
+    if (currents.length === 0) {
+        currents = parent.nextUntil("#article_end", "h" + currentNo);
+    }
+
+    if (currents.length > 0) {
+        var length = currents.length;
+        for (var i = 0; i < length - 1; i++) {
+            var currentLi = $("<li><a href=#" + currents[i].id + ">" + currents[i].innerHTML + "</a></li>");
+            currentLi.appendTo(parentContainer);
+            var currentUl = $("<ul>");
+            currentUl.appendTo(currentLi);
+
+            if (prepareOutline(currents[i], currentUl, currentNo + 1)) {
+                return true;
+            }
+
+        }
+    } else {
+        prepareOutline(parentContainer, currentNo + 1);
+    }
+
+    return false;
 }
 
 function prepareRef() {

@@ -9,6 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         case "SELECT":
             select();
             break;
+
+        case "DROP":
+            drop();
     }
 }
 
@@ -17,7 +20,7 @@ function insert()
     $value = $_POST["value"];
 
     $ch = curl_init();
-    $url = "http://gavins.me:8086/write?db=";
+    $url = "http://localhost:8086/write?db=";
     $db = $_POST["db"];
     $q = "api_test,author=shao,method=ajax value=" . $value;
     $url_final = $url . $db;
@@ -39,7 +42,7 @@ function select()
 // reinitialize curl resource
     $ch = curl_init();
 // set url
-    $url = "http://gavins.me:8086/query?";
+    $url = "http://localhost:8086/query?";
     //directly urlencode("db=mydb") will encode "=", which makes the query invalid.
     $query = "db=" . urlencode($db) . '&' . "q=" . urlencode($q);
     $url_final = $url . $query;
@@ -53,4 +56,25 @@ function select()
 
 // close curl resource to free up system resources
     curl_close($ch);
+}
+
+function drop()
+{
+    $db = $_POST["db"];
+    $q = "DELETE FROM \"api_test\" WHERE author='shao'";
+
+    $ch = curl_init();
+    $url = "http://localhost:8086/query?";
+    $query = "db=" . urlencode($db) . '&' . "q=" . urlencode($q);
+    $url_final = $url . $query;
+    curl_setopt($ch, CURLOPT_URL, $url_final);
+    curl_setopt($ch, CURLOPT_USERPWD, "shao:shaospassword");
+//return result as a string
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    $output = curl_exec($ch);
+    echo $output;
+// close curl resource to free up system resources
+    curl_close($ch);
+
 }

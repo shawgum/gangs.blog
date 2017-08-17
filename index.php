@@ -14,6 +14,7 @@ include("resources/texts/research_on_influxdb.php");
     <!--    <script src="resources/scripts/jquery-3.2.1.min.js"></script>-->
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script src="resources/scripts/global.js"></script>
+    <script src="resources/scripts/util.js"></script>
 </head>
 <body>
 <div id="container">
@@ -30,6 +31,7 @@ include("resources/texts/research_on_influxdb.php");
 
                 <div id="ajaxSent_container">
                     <button onclick="addToInflux('RANDOM')">Add random item</button>
+                    <button onclick="clearTable('#ajaxSent')">Clear table</button>
                     <table id="ajaxSent">
                         <caption></caption>
                         <tr class="header">
@@ -39,6 +41,8 @@ include("resources/texts/research_on_influxdb.php");
                 </div>
                 <div id="ajaxResp_container">
                     <button onclick="readFromInflux()">Select all</button>
+                    <button onclick="clearTable('#ajaxResp')">Clear table</button>
+                    <button onclick="deleteSchema('#ajaxResp')">Delete schema</button>
                     <table id="ajaxResp">
                         <caption></caption>
                         <tbody>
@@ -84,17 +88,25 @@ include("resources/texts/research_on_influxdb.php");
                 </div>
 
             </section>
+            <h3>h3.1</h3>
+            <h4>h4.1</h4>
+            <h4>h4.2</h4>
+            <h2>h2.1</h2>
+            <h3>h3.2</h3>
+            <h4>h4.3</h4>
+            <div id="article_end"></div>
         </article>
         <div id="heading">
-            <!--            <pre>--><?php //echo $heading ?><!--</pre>-->
         </div>
         <div id="des">
-            <!--            <pre>--><?php //echo $des ?><!--</pre>-->
         </div>
     </div>
     <div id="outline_container">
         <div id="outline">
             <h1>Outline</h1>
+            <ul id="outline_ul">
+
+            </ul>
         </div>
     </div>
     <div id="related_link_container">&nbsp;</div>
