@@ -1,7 +1,32 @@
+const HEADINGSLIST = ["h1", "h2", "h3", "h4", "h5", "h6"];
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+jQuery.fn.tagNameLowerCase = function () {
+    return this.prop("tagName").toLowerCase();
+};
+
+function findHeadingChildren(parentNode, childTag) {
+    var tag = parentNode.tagNameLowerCase();
+    var index = HEADINGSLIST.indexOf(tag);
+    var items = parentNode.nextUntil(HEADINGSLIST[index], childTag);
+    while (index >= 0) {
+        var temp = parentNode.nextUntil(HEADINGSLIST[index], childTag);
+
+        if (temp.length < items.length) {
+            console.log("parent to " + HEADINGSLIST[index] + " is closer to " + HEADINGSLIST.indexOf(tag));
+            items = temp;
+            if (temp.length === 0) {
+                break;
+            }
+        }
+        index--;
+    }
+    return items;
 }
 
 function createAjax(url, type, db, q, doneCallback, failCallback, alwaysCallback) {

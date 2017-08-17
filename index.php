@@ -11,8 +11,8 @@ include("resources/texts/research_on_influxdb.php");
     <link href="https://fonts.googleapis.com/css?family=Zilla+Slab:400,600" rel="stylesheet">
     <link rel="stylesheet" href="resources/stylesheets/typography.css" type="text/css"/>
     <link rel="stylesheet" href="resources/stylesheets/layout.css" type="text/css"/>
-    <!--    <script src="resources/scripts/jquery-3.2.1.min.js"></script>-->
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <!--    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>-->
     <script src="resources/scripts/global.js"></script>
     <script src="resources/scripts/util.js"></script>
 </head>
@@ -22,7 +22,6 @@ include("resources/texts/research_on_influxdb.php");
     <div id="content_container">
         <article>
             <h1>Research on InfluxDB</h1>
-            <section>
                 <h2>Ajax Test for InfluxDB</h2>
                 <p>The random item will be in mydb.</p>
                 <div class="code-panel">
@@ -55,8 +54,6 @@ include("resources/texts/research_on_influxdb.php");
                         </tbody>
                 </table>
                 </div>
-            </section>
-            <section>
                 <h2>Environment</h2>
                 <p>Hyper-V is a feature since Windows 8 Professional/Educational/Enterprise for hosting virtual
                     machines, although possibly could be installed on Windows 7 (see <a
@@ -77,8 +74,6 @@ include("resources/texts/research_on_influxdb.php");
                    class="ref">Microsoft Hyper-V</a>
                 <pre class="para"><?php echo $environment ?></pre>
                 <a class="ref" href="https://portal.influxdata.com/downloads">REF</a>
-            </section>
-            <section>
                 <h2>Install</h2>
                 <p><?php echo $install_content ?></p>
                 <div class="code-panel line-numbers">
@@ -86,13 +81,17 @@ include("resources/texts/research_on_influxdb.php");
                         <code class="code-content"><?php echo $install_code ?></code>
                     <a class="ref" href="https://portal.influxdata.com/downloads">REF</a>
                 </div>
-
-            </section>
             <h3>h3.1</h3>
             <h4>h4.1</h4>
             <h4>h4.2</h4>
             <h2>h2.1</h2>
             <h3>h3.2</h3>
+            <h5>h5.1</h5>
+            <h2>h2.2</h2>
+            <h3>h3.3</h3>
+            <h2>h2.3</h2>
+            <h3>h3.4</h3>
+            <h5>h5.2</h5>
             <h4>h4.3</h4>
             <div id="article_end"></div>
         </article>

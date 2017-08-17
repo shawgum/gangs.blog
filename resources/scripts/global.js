@@ -195,31 +195,28 @@ function prepareBookmark() {
 }
 
 function prepareOutline(parent, parentContainer, currentNo) {
-    if (currentNo > 6) {
+    if (currentNo > 3) {
         return true;
     }
 
-    var currents = parent.nextUntil("h" + currentNo - 1, "h" + currentNo);
-
-    if (currents.length === 0) {
-        currents = parent.nextUntil("#article_end", "h" + currentNo);
-    }
+    var currents = findHeadingChildren(parent, "h" + currentNo);
 
     if (currents.length > 0) {
         var length = currents.length;
-        for (var i = 0; i < length - 1; i++) {
+        for (var i = 0; i < length; i++) {
+            console.log(i + " item of " + length + ": " + "id: " + currents[i].id + "\n html: " + currents[i].innerHTML);
             var currentLi = $("<li><a href=#" + currents[i].id + ">" + currents[i].innerHTML + "</a></li>");
             currentLi.appendTo(parentContainer);
             var currentUl = $("<ul>");
             currentUl.appendTo(currentLi);
 
-            if (prepareOutline(currents[i], currentUl, currentNo + 1)) {
-                return true;
+            if (prepareOutline($(currents[i]), currentUl, currentNo + 1)) {
+                return false;
             }
-
         }
     } else {
-        prepareOutline(parentContainer, currentNo + 1);
+        console.log("Item h" + currentNo + " is all found. Proceed to find more.");
+        prepareOutline(parent, parentContainer, currentNo + 1);
     }
 
     return false;
@@ -228,3 +225,4 @@ function prepareOutline(parent, parentContainer, currentNo) {
 function prepareRef() {
     $("a.ref").wrap("<div class='ref'/>");
 }
+

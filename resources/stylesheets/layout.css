@@ -86,7 +86,7 @@ div.ref {
 }
 
 #outline {
-    background-color: pink;
+    background-color: rgb(255, 252, 229);
 }
 
 #outline h2 {
@@ -96,11 +96,24 @@ div.ref {
 
 #outline ul {
     margin: 0;
-    padding: 10px 40px;
+    padding: 5px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #484848;
+}
+
+#outline_ul li ul:nth-child(2) {
+    font-size: 16px;
+    font-weight: 400;
 }
 
 li {
-    margin: 10px;
+    list-style: none;
+}
+
+#outline a:hover {
+    color: orange;
+    border-bottom: gold dashed 2px;
 }
 
 
