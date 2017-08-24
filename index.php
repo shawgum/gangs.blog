@@ -11,8 +11,8 @@ include("resources/texts/research_on_influxdb.php");
     <link href="https://fonts.googleapis.com/css?family=Zilla+Slab:400,600" rel="stylesheet">
     <link rel="stylesheet" href="resources/stylesheets/typography.css" type="text/css"/>
     <link rel="stylesheet" href="resources/stylesheets/layout.css" type="text/css"/>
-    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
-    <!--    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>-->
+    <!--    <script src="resources/scripts/jquery-3.2.1.min.js"></script>-->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script src="resources/scripts/global.js"></script>
     <script src="resources/scripts/util.js"></script>
 </head>

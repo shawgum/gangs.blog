@@ -18,10 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function insert()
 {
     $value = $_POST["value"];
+    $db = $_POST["db"];
 
     $ch = curl_init();
     $url = "http://localhost:8086/write?db=";
-    $db = $_POST["db"];
+
     $q = "api_test,author=shao,method=ajax value=" . $value;
     $url_final = $url . $db;
     curl_setopt($ch, CURLOPT_URL, $url_final);
