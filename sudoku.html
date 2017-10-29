@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoku! - By Gang Shao</title>
+    <link href="resources/stylesheets/sudoku.css" rel="stylesheet">
+</head>
+<body>
+<div id="menu_1_container">
+    <table>
+        <tr>
+            <td>
+                <button id="custom_game_btn">Custom Game</button>
+            </td>
+            <td>
+                <button id="new_game_btn">New Game</button>
+            </td>
+            <td>
+                <button id="solver_btn">Solver</button>
+            </td>
+            <td>
+                <button onclick="solve()">test</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="menu_2_container">
+    <div id="custom_game_menu_container" class="menu_2 hidden">
+        <table>
+            <tbody>
+            <tr>
+                <td><span>Insert your numbers to the table then click start!</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="new_game_menu_container" class="menu_2 hidden">
+        <table>
+            <tbody>
+            <tr>
+                <td><label for="difficulty">Difficulty: </label></td>
+                <td><select id="difficulty">
+                    <option>Simple</option>
+                    <option>Medium</option>
+                    <option>Hard</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label>Hint: </label></td>
+                <td>
+                    <label for="hint">O</label>
+                    <input id="hint" class="toggle_switch" type="checkbox"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="begin">> Begin <</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="solver_menu_container" class="menu_2 hidden">
+        <table>
+            <tbody>
+            <tr>
+                <td colspan="2"><span>Type your sudoku puzzle as a matrix and use 0 to represent blanks!</span></td>
+            </tr>
+            <tr>
+                <td><span>Like this: </span></td>
+                <td>
+                    <code>5 3 0 0 7 0 0 0 0<br>
+                        6 0 0 1 9 5 0 0 0<br>
+                        0 9 8 0 0 0 0 6 0<br>
+                        8 0 0 0 6 0 0 0 3<br>
+                        4 0 0 8 0 3 0 0 1<br>
+                        7 0 0 0 2 0 0 0 6<br>
+                        0 6 0 0 0 0 2 8 0<br>
+                        0 0 0 4 1 9 0 0 5<br>
+                        0 0 0 0 8 0 0 7 9
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><textarea></textarea></td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="solve_btn">> Solve <</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="sudoku_container">
+</div>
+</body>
+<script src="resources/scripts/sudoku.js"></script>
+</html>

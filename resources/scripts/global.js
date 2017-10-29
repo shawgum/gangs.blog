@@ -1,15 +1,5 @@
 $(document).ready(function () {
-    $("#copyright").click(function () {
-        if ($(window).width() >= 768) {
-            $("#contact").animate({
-                width: "toggle"
-            });
-        } else {
-            $("#contact").animate({
-                height: "toggle"
-            });
-        }
-    });
+
 
     prepareCodeMain();
     prepareLineNumbers();
@@ -17,7 +7,7 @@ $(document).ready(function () {
     prepareBookmark();
     prepareOutline($("article h1"), $("#outline_ul"), 2);
     prepareRef();
-
+    prepareFooterAnimation();
 
 });
 
@@ -195,7 +185,7 @@ function prepareBookmark() {
 }
 
 function prepareOutline(parent, parentContainer, currentNo) {
-    if (currentNo > 3) {
+    if (currentNo > 4) {
         return true;
     }
 
@@ -226,3 +216,16 @@ function prepareRef() {
     $("a.ref").wrap("<div class='ref'/>");
 }
 
+function prepareFooterAnimation() {
+    $("#copyright").click(function () {
+        if ($(window).width() >= 768) {
+            $("#contact").animate({
+                width: "toggle"
+            });
+        } else {
+            $("#contact").animate({
+                height: "toggle"
+            });
+        }
+    });
+}

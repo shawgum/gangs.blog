@@ -135,6 +135,14 @@ article {
     text-align: center;
 }
 
+/*image*/
+img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+
 /*table*/
 table {
     border-collapse: collapse;

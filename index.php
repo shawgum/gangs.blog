@@ -1,7 +1,5 @@
 <?php
 include("resources/texts/index.php");
-include("resources/texts/footer.php");
-include("resources/texts/research_on_influxdb.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +16,7 @@ include("resources/texts/research_on_influxdb.php");
 </head>
 <body>
 <div id="container">
+    <a href="sudoku.html">Sudoku Game!</a>
     <div id="header_container"></div>
     <div id="content_container">
         <article>
@@ -55,11 +54,20 @@ include("resources/texts/research_on_influxdb.php");
                 </table>
                 </div>
                 <h2>Environment</h2>
-                <p>Hyper-V is a feature since Windows 8 Professional/Educational/Enterprise for hosting virtual
+            <div class="code-panel">
+                <p class="code-heading">Environment</p>
+                <code class="code-content">Ubuntu 17.04 x64
+                    VMware Workstation Player
+                    PHP 7.0
+                </code>
+            </div>
+            <h3>Using Hyper-V (failed because CPU fails to support Hyper-V)</h3>
+
+            <p>Hyper-V is a feature since Windows 8 Professional/Educational/Enterprise for hosting virtual
                     machines, although possibly could be installed on Windows 7 (see <a
                             href="https://blogs.technet.microsoft.com/schadinio/2010/07/09/installing-hyper-v-manager-on-windows-7/">here</a>).
                 </p>
-                <h3>Enable Hyper-V using powershell</h3>
+            <h4>Enable Hyper-V using powershell</h4>
                 <ol>
                     <li>Open a PowerShell console as Administrator.</li>
                     <li>Run the following command:
@@ -72,27 +80,19 @@ include("resources/texts/research_on_influxdb.php");
                 </ol>
                 <a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v"
                    class="ref">Microsoft Hyper-V</a>
-                <pre class="para"><?php echo $environment ?></pre>
-                <a class="ref" href="https://portal.influxdata.com/downloads">REF</a>
-                <h2>Install</h2>
-                <p><?php echo $install_content ?></p>
-                <div class="code-panel line-numbers">
-                    <p class="code-heading"><?php echo $install_code_title ?></p>
-                        <code class="code-content"><?php echo $install_code ?></code>
-                    <a class="ref" href="https://portal.influxdata.com/downloads">REF</a>
-                </div>
-            <h3>h3.1</h3>
-            <h4>h4.1</h4>
-            <h4>h4.2</h4>
-            <h2>h2.1</h2>
-            <h3>h3.2</h3>
-            <h5>h5.1</h5>
-            <h2>h2.2</h2>
-            <h3>h3.3</h3>
-            <h2>h2.3</h2>
-            <h3>h3.4</h3>
-            <h5>h5.2</h5>
-            <h4>h4.3</h4>
+            <p>You need to restart to let the installation finish.</p>
+            <h4>Install OS</h4>
+            <p>Dowload <a href="https://www.ubuntu.com/download/server">Ubuntu Server</a> OS as an .iso file. (Here I
+                use version 17.04 x64)</p>
+            <p>Open Hyper-V Manager.</p>
+            <img src="resources/images/hyper-v_tutorial.jpg" alt="Hyper-V OS installation steps"/>
+            <p>Follow steps in the picture to install and connect.</p>
+            <a class="ref"
+               href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine">REF</a>
+            <p><b>My computer failed this process because the CPU does not support SLAT.</b></p>
+            <h3>Using VMware Workstation Player (the non-commercial version)</h3>
+            <h4>Dowload VMware Workstation Player.</h4>
+            <a class="ref" href="https://www.vmware.com/products/player/playerpro-evaluation.html">REF</a>
             <div id="article_end"></div>
         </article>
         <div id="heading">
@@ -103,22 +103,11 @@ include("resources/texts/research_on_influxdb.php");
     <div id="outline_container">
         <div id="outline">
             <h1>Outline</h1>
-            <ul id="outline_ul">
-
-            </ul>
+            <ul id="outline_ul"></ul>
         </div>
     </div>
     <div id="related_link_container">&nbsp;</div>
-    <div id="footer_container">
-        <div id="footer">
-            <a id="copyright"><?php echo $copyright ?></a>
-            <span id="contact" style="display: none">
-                <a id="website" href="http://www.gavins.me"><?php echo $website ?></a>
-                <a id="email" href="mailto:fexact@outlook.com"><?php echo $email ?></a>
-                <a id="github" href="https://github.com/shawgum"><?php echo $github ?></a>
-            </span>
-        </div>
-    </div>
+    <?php include('resources/texts/footer.php'); ?>
 </div>
 
 </body>
