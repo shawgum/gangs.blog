@@ -1,3 +1,149 @@
 .hidden {
     display: none;
 }
+
+.shown {
+    display: block;
+}
+
+.known {
+    color: black;
+}
+
+.unknown {
+    color: white;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: mintcream;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px auto;
+    font-family: monospace;
+}
+
+p {
+    margin: 10px auto;
+    text-align: center;
+    font-family: monospace;
+    font-size: large;
+}
+
+button {
+    padding: 0 15px;
+    font-size: 40px;
+    text-decoration: none;
+    background: none;
+    transition: 0.5s;
+    border: 0;
+    color: white;
+    background: cadetblue;
+    font-family: monospace;
+    font-weight: bolder;
+}
+
+button:hover {
+    cursor: pointer;
+    background: seagreen;
+}
+
+.innerTableCell {
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #929292;
+    border-collapse: separate;
+    background-color: #828282;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+}
+
+.odd .innerTableCell {
+    background-color: #878787;
+}
+
+tr {
+    height: 48px;
+    vertical-align: middle;
+}
+
+.solution {
+    background-color: #606060;
+    border: 1px solid #606060;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+input {
+    width: inherit;
+    height: inherit;
+    font-family: "Arial", sans-serif;
+    font-size: 38px;
+    color: white;
+    background: none;
+    text-decoration: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+}
+
+input.known {
+    color: darkgray;
+}
+
+input:hover {
+    background-color: #909090;
+}
+
+#solver_menu_container {
+    overflow: hidden;
+
+}
+
+#solver_menu_container.hidden {
+    height: 0;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+textarea#user_matrix_textarea {
+    width: 300px;
+    height: 320px;
+    font-size: 30px;
+    text-align: center;
+    font-family: monospace;
+}
+
+div#menu_1_container {
+    transition: 0.5s;
+}
+
+span {
+    font-family: monospace;
+    font-size: large;
+    text-align: right;
+}
+
+code {
+    font-size: 20px;
+    color: seagreen;
+}
+
+td.right_align {
+    text-align: right;
+    vertical-align: top;
+}
+
+td.left_align {
+    text-align: left;
+}
