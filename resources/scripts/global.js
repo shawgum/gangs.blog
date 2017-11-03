@@ -51,7 +51,7 @@ function readFromInflux() {
     if (typeof maxTime === "undefined") {
         maxTime = "";
     }
-    var q = "SELECT * FROM \"api_test\"" + (maxTime.length > 1 ? (" WHERE time>" + "'" + maxTime + "'") : "");
+    var q = (maxTime.length > 1 ? (" WHERE time>" + "'" + maxTime + "'") : "");
     $.ajax({
         url: "influx.php",
         data: {

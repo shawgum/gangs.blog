@@ -111,12 +111,6 @@ li {
     list-style: none;
 }
 
-#outline a:hover {
-    color: orange;
-    border-bottom: gold dashed 2px;
-}
-
-
 /*article*/
 #content_container {
     text-align: center;

@@ -1,0 +1,76 @@
+<!--Author: Gang Shao-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple JS DOM manipulation</title>
+    <style>
+        .highlighted {
+            background: gold;
+            text-shadow: 1px 1px 0 white;
+        }
+
+        #elephant_ol {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="content_container">
+    <p>Three simple steps to put an elephant into a fridge:</p>
+    <ol id="elephant_ol">
+        <li>Open the fridge.</li>
+        <li>Put the elephant into the fridge.</li>
+        <li>Close the fridge.</li>
+    </ol>
+    <div id="add_to_list_container">
+        <input id="add_to_list_input"/>
+        <button id="add_to_list_btn">Add</button>
+    </div>
+    <div id="change_list_color_container">
+        <button id="change_list_color_btn">Highlight CORE steps</button>
+    </div>
+</div>
+</body>
+<script>
+    function prepareBtns() {
+        // prepare "Add" button
+        var addBtn = document.getElementById("add_to_list_btn");
+        addBtn.onclick = function () {
+            var userInput = document.getElementById("add_to_list_input").value;
+            if (!userInput)
+                alert("No input!");
+            return;
+
+            var elephantOl = document.getElementById("elephant_ol");
+            var newListElement = document.createElement("li");
+            var inputText = document.createTextNode(userInput);
+            newListElement.appendChild(inputText);
+            elephantOl.appendChild(newListElement);
+        };
+
+        // prepare "Highlight CORE steps" button
+        var highlightBtn = document.getElementById("change_list_color_btn");
+        highlightBtn.onclick = function () {
+            var elephantLis = document.getElementById("elephant_ol").getElementsByTagName("li");
+            for (var i = 0; i < 3; i++) {
+                elephantLis[i].classList.add("highlighted");
+            }
+        };
+    }
+
+    addLoadEvent(prepareBtns);
+
+    function addLoadEvent(func) {
+        var oldOnLoad = window.onload;
+        if (typeof oldOnLoad === "function") {
+            window.onload = function () {
+                oldOnLoad();
+                func();
+            }
+        } else {
+            window.onload = func;
+        }
+    }
+</script>
+</html>
